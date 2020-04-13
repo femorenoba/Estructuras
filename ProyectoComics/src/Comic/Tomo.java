@@ -8,4 +8,20 @@ public class Tomo {
 	private Comic cola;
 	private boolean finalizado;
 	
+	
+	
+	
+	//Contructor clase Tomo
+	public Tomo(String nombre, int ano_publicacion, String descripcion) {
+		super();
+		this.nombre = nombre;
+		this.ano_publicacion = ano_publicacion;
+		this.descripcion = descripcion;
+	}
+	
+	
+	
+	
+	
+	
 }
