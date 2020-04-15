@@ -1,50 +1,51 @@
 package Propiedades;
 
 public class Autor {
+
 	private String nombre ;
 	private int edad;
+	private Categoria[] categorias;
 	
-	
-	
-	
-	// Getters and Setters de la clase autor
-	public String getNombre() {
+	public Autor(String nombre, int edad, Categoria[] categorias) {
+		super();
+		this.nombre = nombre;
+		this.edad = edad;
+		this.categorias = categorias;
+	}
+
+	protected String getNombre() {
 		return nombre;
 	}
 
 
 
-
-
-	public void setNombre(String nombre) {
+	protected void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
 
 
-
-
-	public int getEdad() {
+	protected int getEdad() {
 		return edad;
 	}
 
 
 
-
-
-	public void setEdad(int edad) {
+	protected void setEdad(int edad) {
 		this.edad = edad;
 	}
 
 
 
-   //Constructor de la clase autor
-	
-	public Autor(String nombre, int edad) {
-		super();
-		this.nombre = nombre;
-		this.edad = edad;
+	protected Categoria[] getCategorias() {
+		return categorias;
 	}
+
+
+	protected void setCategorias(Categoria[] categorias) {
+		this.categorias = categorias;
+	}
+
 	
 
 }
