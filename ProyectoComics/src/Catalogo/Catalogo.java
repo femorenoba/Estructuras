@@ -20,11 +20,18 @@ public class Catalogo {
 		this.categorias = categorias;
 		this.usuarios = usuarios;
 	}
+        
+        public Catalogo()
+        {
+            this(null,null,null,null,null);
+        }       
 
 	public Comic[] buscarPorAno(int ano){
 		return null;
 		
 	}
+        
+        
 
 	public Comic[] buscarPorAutor(Autor autor){
 		return null;

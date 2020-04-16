@@ -1,23 +1,25 @@
 package Propiedades;
 
+import Estructuras.Stack;
+
 public class Usuario {
 	
-	private Stack busquedasRecientes;
+	private Stack<String> busquedasRecientes;
 	private String nombre;
-	private String contraseña;
+	private String password;
 	
-	public Usuario(Stack busquedasRecientes, String nombre, String contraseña) {
+	public Usuario(Stack<String> busquedasRecientes, String nombre, String password) {
 		super();
 		this.busquedasRecientes = busquedasRecientes;
 		this.nombre = nombre;
-		this.contraseña = contraseña;
+		this.password = password;
 	}
 
-	protected Stack getBusquedasRecientes() {
+	protected Stack<String> getBusquedasRecientes() {
 		return busquedasRecientes;
 	}
 
-	protected void setBusquedasRecientes(Stack busquedasRecientes) {
+	protected void setBusquedasRecientes(Stack<String> busquedasRecientes) {
 		this.busquedasRecientes = busquedasRecientes;
 	}
 
@@ -29,12 +31,12 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	protected String getContraseña() {
-		return contraseña;
+	protected String getPassword() {
+		return password;
 	}
 
-	protected void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	protected void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

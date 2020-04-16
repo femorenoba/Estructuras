@@ -1,5 +1,7 @@
 package Comic;
 
+import Propiedades.*;
+
 public class Comic {
 
 
@@ -8,18 +10,20 @@ public class Comic {
 	private String descripcion;
 	private Comic secuela;
 	private Comic precuela;
+        private Autor escritor; //Los puse como string porque no es posible para comic acceder al arreglo con todos los autores.
+        private Autor dibujante;
 	
 	
 	
 	//Contructor de la clase Comic. 
-	public Comic(String nombre, int ano_publicacion, String descripcion) {
+	public Comic(String nombre, int ano_publicacion, String descripcion, Autor escritor, Autor dibujante) {
 		super();
 		this.nombre = nombre;
 		this.ano_publicacion = ano_publicacion;
 		this.descripcion = descripcion;
+                this.escritor = escritor;
+                this.dibujante = dibujante;
 	}
-
-
 
 	protected String getNombre() {
 		return nombre;

@@ -1,0 +1,18 @@
+Categoria #número_categorias(n)
+nombre_categoria
+		
+Autor #número_de_autores
+nombre edad #categorias(n) categoria1 ... categorian 							
+
+Comic #comics
+nombre agno_publicacion nombre_escritor nombre_dibujante nombre_precuela nombre_secuela tieneDescripcion(bool)
+									
+Tomo #tomos
+nombre agno_publicacion nombre_escritor nombre_dibujante finalizado #categorias categorias... lenguaje cabeza cola tieneDescripcion(bool)
+
+Editorial #editoriales
+nombre #tomos tomos...
+
+Lenguaje
+lenguaje #tomos tomos... 
+	

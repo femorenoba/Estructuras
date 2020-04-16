@@ -15,14 +15,14 @@ public class Tomo {
 	private int tamano;
 	private boolean finalizado;
 	private Categoria[] categorias;
-	private Lenguaje lenguaje;
+	private String lenguaje;
 	
 	
 	
 	//Contructor clase Tomo
 
 	public Tomo(String nombre, Autor autor, int ano_publicacion, String descripcion, 
-			boolean finalizado, Categoria[] categorias, Lenguaje lenguaje) {
+			boolean finalizado, Categoria[] categorias, String lenguaje) {
 		super();
 		this.nombre = nombre;
 		this.autor = autor;
@@ -34,7 +34,7 @@ public class Tomo {
 		this.categorias = categorias;
 		this.lenguaje = lenguaje;
 		this.tamano = 0;
-	}
+	}        
 
 	  public boolean vacio()
 	    {
@@ -170,12 +170,12 @@ public class Tomo {
 	}
 
 
-	protected Lenguaje getLenguaje() {
+	protected String getLenguaje() {
 		return lenguaje;
 	}
 
 
-	protected void setLenguaje(Lenguaje lenguaje) {
+	protected void setLenguaje(String lenguaje) {
 		this.lenguaje = lenguaje;
 	}
 
