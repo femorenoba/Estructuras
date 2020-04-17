@@ -2,15 +2,12 @@ package Propiedades;
 
 public class Categoria {
 	
-	private String nombre;
-
+	protected String nombre;
 	
 	//Getters and Setters de la clase Categoria
 	public String getNombre() {
 		return nombre;
 	}
-
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -22,5 +19,10 @@ public class Categoria {
 		super();
 		this.nombre = nombre;
 	}
+        
+        @Override
+        public boolean equals(Object categoria){
+            return this.nombre.equalsIgnoreCase(((Categoria)categoria).getNombre());
+        }
     
 }

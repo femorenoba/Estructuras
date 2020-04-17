@@ -8,7 +8,7 @@ public class Tomo {
 	
 	private String nombre;
 	private Autor autor;
-	private int ano_publicacion;
+	private int agno_publicacion;
 	private String descripcion;
 	private Comic cabeza;
 	private Comic cola;
@@ -21,12 +21,12 @@ public class Tomo {
 	
 	//Contructor clase Tomo
 
-	public Tomo(String nombre, Autor autor, int ano_publicacion, String descripcion, 
+	public Tomo(String nombre, Autor autor, int agno_publicacion, String descripcion, 
 			boolean finalizado, Categoria[] categorias, String lenguaje) {
 		super();
 		this.nombre = nombre;
 		this.autor = autor;
-		this.ano_publicacion = ano_publicacion;
+		this.agno_publicacion = agno_publicacion;
 		this.descripcion = descripcion;
 		this.cabeza = null;
 		this.cola = null;
@@ -187,15 +187,15 @@ public class Tomo {
 
 
 
-	protected int getAno_publicacion() {
-		return ano_publicacion;
+	protected int getAgno_publicacion() {
+		return agno_publicacion;
 	}
 
 
 
 
-	protected void setAno_publicacion(int ano_publicacion) {
-		this.ano_publicacion = ano_publicacion;
+	protected void setAgno_publicacion(int agno_publicacion) {
+		this.agno_publicacion = agno_publicacion;
 	}
 
 

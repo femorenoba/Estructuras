@@ -6,7 +6,7 @@ public class Comic {
 
 
 	private String nombre;
-	private int ano_publicacion;
+	private int agno_publicacion;
 	private String descripcion;
 	private Comic secuela;
 	private Comic precuela;
@@ -16,10 +16,10 @@ public class Comic {
 	
 	
 	//Contructor de la clase Comic. 
-	public Comic(String nombre, int ano_publicacion, String descripcion, Autor escritor, Autor dibujante) {
+	public Comic(String nombre, int agno_publicacion, String descripcion, Autor escritor, Autor dibujante) {
 		super();
 		this.nombre = nombre;
-		this.ano_publicacion = ano_publicacion;
+		this.agno_publicacion = agno_publicacion;
 		this.descripcion = descripcion;
                 this.escritor = escritor;
                 this.dibujante = dibujante;
@@ -38,13 +38,13 @@ public class Comic {
 
 
 	protected int getAno_publicacion() {
-		return ano_publicacion;
+		return agno_publicacion;
 	}
 
 
 
-	protected void setAno_publicacion(int ano_publicacion) {
-		this.ano_publicacion = ano_publicacion;
+	protected void setAgno_publicacion(int agno_publicacion) {
+		this.agno_publicacion = agno_publicacion;
 	}
 
 
