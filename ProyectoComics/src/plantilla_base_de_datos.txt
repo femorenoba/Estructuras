@@ -13,7 +13,7 @@ tieneDescripcion(bool) descripcion, si la hay
 
 Editorial #editoriales
 nombre #tomos 
-tomos...
+nombre_tomo agno_publicacion 
 
 Lenguaje
 lenguaje #tomos tomos... 
