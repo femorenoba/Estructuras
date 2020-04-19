@@ -1,11 +1,12 @@
 package Propiedades;
 
 import Comic.Tomo;
+import Estructuras.DynamicArray;
 
 public class Editorial {
 	
-	private String nombre;
-	private Tomo[] tomos;
+	protected String nombre;
+	protected DynamicArray<Tomo> tomos;
 
 
 
@@ -15,41 +16,35 @@ public class Editorial {
 		return nombre;
 	}
 
-
-
-
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	
-	
-
 	//Contructor clase Editorial.
-
-
-	protected Tomo[] getTomos() {
-		return tomos;
-	}
-
-
-
-
-
-	protected void setTomos(Tomo[] tomos) {
-		this.tomos = tomos;
-	}
-
-
-
-
-
-	public Editorial(String nombre, Tomo[] tomos) {
+     
+	public Editorial(String nombre, DynamicArray<Tomo> tomos) {
 		super();
 		this.nombre = nombre;
 		this.tomos = tomos;
 	}
 
+    public DynamicArray<Tomo> getTomos() {
+        return tomos;
+    }
 
+    public void setTomos(DynamicArray<Tomo> tomos) {
+        this.tomos = tomos;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Editorial editorial = (Editorial)obj;
+        
+        return this.nombre.equalsIgnoreCase(editorial.getNombre()) &&
+                this.tomos.equals(editorial.getTomos());
+    }
+    
+    
+
+        
 }

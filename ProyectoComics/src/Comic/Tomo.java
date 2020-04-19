@@ -1,5 +1,6 @@
 package Comic;
 
+import Estructuras.DynamicArray;
 import java.util.*;
 
 import Propiedades.*; 
@@ -7,39 +8,37 @@ import Propiedades.*;
 public class Tomo {
 	
 	private String nombre;
-	private Autor autor;
+	private Autor escritor;
+        private Autor dibujante;
 	private int agno_publicacion;
 	private String descripcion;
 	private Comic cabeza;
 	private Comic cola;
 	private int tamano;
 	private boolean finalizado;
-	private Categoria[] categorias;
+	private DynamicArray<Categoria> categorias;
 	private String lenguaje;
-	
+	private Editorial editorial;
 	
 	
 	//Contructor clase Tomo
+        
 
-	public Tomo(String nombre, Autor autor, int agno_publicacion, String descripcion, 
-			boolean finalizado, Categoria[] categorias, String lenguaje) {
-		super();
-		this.nombre = nombre;
-		this.autor = autor;
-		this.agno_publicacion = agno_publicacion;
-		this.descripcion = descripcion;
-		this.cabeza = null;
-		this.cola = null;
-		this.finalizado = finalizado;
-		this.categorias = categorias;
-		this.lenguaje = lenguaje;
-		this.tamano = 0;
-	}        
-
-	  public boolean vacio()
+	  public Tomo(String nombre, Autor escritor, Autor dibujante, int agno_publicacion, boolean finalizado, DynamicArray<Categoria> categorias)
 	    {
-	        return(tamano==0);
+            this.nombre = nombre;
+            this.escritor = escritor;
+            this.dibujante = dibujante;
+            this.agno_publicacion = agno_publicacion;
+            this.finalizado = finalizado;
+            this.categorias = categorias;
+            this.cabeza = null;
+            this.cola = null;
 	    }
+
+    public boolean vacio() {
+        return(tamano==0);
+    }
 	    
 	    public int tamano()
 	    {
@@ -142,118 +141,153 @@ public class Tomo {
 	        }
 	        return(this.cola);
 	    }
+
+        public Editorial getEditorial() {
+        return editorial;
+        }
+
+        public void setEditorial(Editorial editorial) {
+        this.editorial = editorial;
+        }	   
 	
-	
-	protected String getNombre() {
+	public String getNombre() {
 		return nombre;
 	}
 
+        public Autor getEscritor() {
+            return escritor;
+        }
 
+        public void setEscritor(Autor escritor) {
+            this.escritor = escritor;
+        }
 
-	protected Autor getAutor() {
-		return autor;
-	}
+        public Autor getDibujante() {
+            return dibujante;
+        }
 
+        public void setDibujante(Autor dibujante) {
+            this.dibujante = dibujante;
+        }
+        
+        
 
-	protected void setAutor(Autor autor) {
-		this.autor = autor;
-	}
-
-
-	protected Categoria[] getCategorias() {
+	public DynamicArray<Categoria> getCategorias() {
 		return categorias;
 	}
 
 
-	protected void setCategorias(Categoria[] categorias) {
+	public void setCategorias(DynamicArray<Categoria> categorias) {
 		this.categorias = categorias;
 	}
 
 
-	protected String getLenguaje() {
+	public String getLenguaje() {
 		return lenguaje;
 	}
 
 
-	protected void setLenguaje(String lenguaje) {
+	public void setLenguaje(String lenguaje) {
 		this.lenguaje = lenguaje;
 	}
 
 
-	protected void setNombre(String nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+        
 
 
-
-	protected int getAgno_publicacion() {
+	public int getAgno_publicacion() {
 		return agno_publicacion;
 	}
 
 
 
 
-	protected void setAgno_publicacion(int agno_publicacion) {
+	public void setAgno_publicacion(int agno_publicacion) {
 		this.agno_publicacion = agno_publicacion;
 	}
 
 
 
 
-	protected String getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
 
 
 
 
-	protected void setDescripcion(String descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
 
 
 
-	protected Comic getCabeza() {
+	public Comic getCabeza() {
 		return cabeza;
 	}
 
 
 
 
-	protected void setCabeza(Comic cabeza) {
+	public void setCabeza(Comic cabeza) {
 		this.cabeza = cabeza;
 	}
 
 
 
 
-	protected Comic getCola() {
+	public Comic getCola() {
 		return cola;
 	}
 
 
 
 
-	protected void setCola(Comic cola) {
+	public void setCola(Comic cola) {
 		this.cola = cola;
 	}
 
 
 
 
-	protected boolean isFinalizado() {
+	public boolean isFinalizado() {
 		return finalizado;
 	}
 
 
 
 
-	protected void setFinalizado(boolean finalizado) {
+	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
 	}
-	
+
+        
+        
+        
+    @Override
+    public boolean equals(Object obj) {
+        Tomo tomo = (Tomo)obj;
+        if(tomo.tamano != this.tamano) return false;
+        else{
+            Comic this_comic = this.cabeza;
+            Comic tomo_comic = tomo.cabeza;
+            for(int i = 0; i < tamano; ++i){
+                if(!this_comic.equals(tomo_comic)) return false;
+                this_comic = this_comic.getSecuela();
+                tomo_comic = tomo_comic.getSecuela();
+            }
+        }
+        return  this.escritor.equals(tomo.getEscritor())            &&
+                this.dibujante.equals(tomo.dibujante)               &&
+                this.nombre.equalsIgnoreCase(tomo.getNombre())      &&
+                this.agno_publicacion == tomo.getAgno_publicacion() &&
+                this.categorias.equals(tomo.getCategorias());
+    }
 	
 	
 }

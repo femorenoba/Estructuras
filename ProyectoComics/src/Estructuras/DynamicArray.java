@@ -66,4 +66,18 @@ public class DynamicArray<T>{
     public int getSize(){
         return size;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+       DynamicArray<T> array = (DynamicArray<T>)obj;
+       if(array.getSize() != this.size) return false;
+       else{
+           for(int i = 0; i < this.size; ++i){
+               if(!this.get(i).equals(array.get(i))) return false;
+           }
+           return true;
+       }
+    }
+    
+    
 }

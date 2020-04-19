@@ -3,15 +3,17 @@ nombre_categoria
 		
 Autor #número_de_autores
 nombre edad #categorias(n) categoria1 ... categorian 							
-
-Comic #comics
-nombre agno_publicacion nombre_escritor nombre_dibujante nombre_precuela nombre_secuela tieneDescripcion(bool)
 									
 Tomo #tomos
-nombre agno_publicacion nombre_escritor nombre_dibujante finalizado #categorias categorias... lenguaje cabeza cola tieneDescripcion(bool)
+nombre agno_publicacion nombre_escritor nombre_dibujante haFinalizado 
+#categorias categorias
+#comics
+Informacion comics(nombre agno_publicacion nombre_escritor nombre_dibujante)
+tieneDescripcion(bool) descripcion, si la hay
 
 Editorial #editoriales
-nombre #tomos tomos...
+nombre #tomos 
+tomos...
 
 Lenguaje
 lenguaje #tomos tomos... 

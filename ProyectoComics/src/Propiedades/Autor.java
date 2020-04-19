@@ -20,6 +20,10 @@ public class Autor {
         this.edad = edad;
         } 
         
+        public Autor(String nombre){
+            this.nombre = nombre;
+        }
+        
 	public String getNombre() {
 		return nombre;
 	}

@@ -1,32 +1,43 @@
 package Propiedades;
 
 import Comic.Tomo;
+import Estructuras.DynamicArray;
 
 public class Lenguaje {
 	
 	private String lenguaje;
-	private Tomo[] tomos;
+	private DynamicArray<Tomo> tomos;
 	
-	public Lenguaje(String lenguaje, Tomo[] tomos) {
+	public Lenguaje(String lenguaje, DynamicArray<Tomo> tomos) {
 		super();
 		this.lenguaje = lenguaje;
 		this.tomos = tomos;
 	}
 
-	protected String getLenguaje() {
+	public String getLenguaje() {
 		return lenguaje;
 	}
 
-	protected void setLenguaje(String lenguaje) {
+	public void setLenguaje(String lenguaje) {
 		this.lenguaje = lenguaje;
 	}
 
-	protected Tomo[] getTomos() {
-		return tomos;
-	}
+        public DynamicArray<Tomo> getTomos() {
+        return tomos;
+        }
 
-	protected void setTomos(Tomo[] tomos) {
-		this.tomos = tomos;
-	}
+        public void setTomos(DynamicArray<Tomo> tomos) {
+        this.tomos = tomos;
+        }
+
 	
+
+    @Override
+    public boolean equals(Object obj) {
+        Lenguaje lenguaje = (Lenguaje)obj;
+        return this.lenguaje.equalsIgnoreCase(lenguaje.getLenguaje()) &&
+                this.tomos.equals(lenguaje.getTomos());
+    }
+	
+        
 }
