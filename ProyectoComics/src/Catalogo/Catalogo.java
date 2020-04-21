@@ -13,6 +13,10 @@ public class Catalogo {
     
         public static void main(String[] args) {
         Catalogo catalogo = new Catalogo();
+        catalogo.leerDatos();
+        
+        for(int i = 0; i < catalogo.getCategorias().getSize(); ++i) System.out.println(catalogo.getCategorias().get(i).getNombre());
+        for(int i = 0; i < catalogo.getAutores().getSize(); ++i) System.out.println(catalogo.getAutores().get(i).getNombre());
 
         }
 
@@ -21,6 +25,7 @@ public class Catalogo {
 	private DynamicArray<Autor> autores;
 	private DynamicArray<Categoria> categorias;
 	private DynamicArray<Usuario> usuarios;
+        private DynamicArray<Lenguaje> lenguajes;
 
     public Catalogo(DynamicArray<Editorial> editoriales, DynamicArray<Tomo> tomos, DynamicArray<Autor> autores, DynamicArray<Categoria> categorias, DynamicArray<Usuario> usuarios) {
         this.editoriales = editoriales;
@@ -98,21 +103,29 @@ public class Catalogo {
         public void setUsuarios(DynamicArray<Usuario> usuarios) {
             this.usuarios = usuarios;
         }
-	
+
+        public DynamicArray<Lenguaje> getLenguajes() {
+            return lenguajes;
+        }
+
+        public void setLenguajes(DynamicArray<Lenguaje> lenguajes) {
+            this.lenguajes = lenguajes;
+        }
+        
         //Persistencia
-        protected void leerDatos(Catalogo catalogo)
+        protected void leerDatos()
         {
             Scanner flujo_entrada = null;
             int iteraciones = 0;
             DynamicArray array = null;
-            //Lectura catalógo 
+            //Lectura categoria
             try {
-            flujo_entrada = new Scanner(new File("catalogo.txt"));
+            flujo_entrada = new Scanner(new File("categoria.txt"));
             String primera_linea = flujo_entrada.nextLine();
             Scanner temp_scanner = new Scanner(primera_linea);
             temp_scanner.next();
-            iteraciones = flujo_entrada.nextInt();
-        } catch (FileNotFoundException ex){System.out.println("Error en la lectura de catalógo");}
+            iteraciones = temp_scanner.nextInt();
+        } catch (FileNotFoundException ex){System.out.println("Error en la lectura de categorias");}
             
             array = new DynamicArray<Categoria>();
             
@@ -121,7 +134,7 @@ public class Catalogo {
                 Categoria categoria = new Categoria(flujo_entrada.nextLine());
                 array.pushBackCheck(categoria);
             }
-            catalogo.setCategorias(array);
+            this.setCategorias(array);
             
             //Lectura autor
             try {
@@ -129,8 +142,8 @@ public class Catalogo {
             String primera_linea = flujo_entrada.nextLine();
             Scanner temp_scanner = new Scanner(primera_linea);
             temp_scanner.next();
-            iteraciones = flujo_entrada.nextInt();
-        } catch (FileNotFoundException ex){System.out.println("Error en la lectura de catalógo");}
+            iteraciones = temp_scanner.nextInt();
+        } catch (FileNotFoundException ex){System.out.println("Error en la lectura de autor");}
             array = new DynamicArray<Autor>();
             
             for(;iteraciones > 0;--iteraciones){
@@ -144,17 +157,25 @@ public class Catalogo {
                     autor = buscarAutor(nombre, edad);
                     existe_autor = true;
                 }
+                DynamicArray<Categoria> categorias = new DynamicArray<Categoria>();
                 
                 int numero_categorias = flujo_entrada.nextInt();
                 for(int i = 0; i < numero_categorias; ++i)
                 {
                     Categoria categoria = new Categoria(flujo_entrada.next());
-                    autor.getCategorias().pushBackCheck(categoria);
-                }
-                
-                if(!existe_autor) catalogo.autores.pushBack(autor);              
+                    if(existe_autor){
+                        autor.getCategorias().pushBackCheck(categoria);
+                    }
+                    else if(i == 0) {
+                        autor.setCategorias(categorias);
+                        autor.getCategorias().pushBackCheck(categoria);
+                    }
+                    else autor.getCategorias().pushBackCheck(categoria);
+                    
+                    
+                }             
             }
-            catalogo.setAutores(array);      
+            this.setAutores(array);      
         
             //Lectura tomo
             array = new DynamicArray<Tomo>();            
@@ -164,7 +185,7 @@ public class Catalogo {
             String primera_linea = flujo_entrada.nextLine();
             Scanner temp_scanner = new Scanner(primera_linea);
             temp_scanner.next();
-            iteraciones = flujo_entrada.nextInt();     
+            iteraciones = temp_scanner.nextInt();     
         } catch (FileNotFoundException ex){System.out.println("Error en la lectura de tomos");}
             
             for(;iteraciones > 0;--iteraciones){
@@ -185,18 +206,18 @@ public class Catalogo {
                 
                 Autor dibujante = null;
                 
-                for(int i = 0; i < catalogo.getAutores().getSize(); ++i){
-                    String t_autor = catalogo.getAutores().get(i).getNombre();
+                for(int i = 0; i < this.getAutores().getSize(); ++i){
+                    String t_autor = this.getAutores().get(i).getNombre();
                     if(t_autor.equalsIgnoreCase(s_escritor)){
                         s_escritor = null;
                         
-                        escritor = catalogo.getAutores().get(i);
+                        escritor = this.getAutores().get(i);
                     }
                     
                     if(t_autor.equalsIgnoreCase(s_dibujante)){
                         s_dibujante = null;
                         
-                        dibujante = catalogo.getAutores().get(i);
+                        dibujante = this.getAutores().get(i);
                     }
                     
                     if(s_escritor == null && s_dibujante == null) break;
@@ -208,7 +229,7 @@ public class Catalogo {
              
                 if(s_dibujante != null){
                     dibujante = new Autor(s_dibujante);
-                    
+                    this.getAutores().pushBack(dibujante);
                 }
                 
                 //Lectura comic dentro de tomo
@@ -225,18 +246,18 @@ public class Catalogo {
                 
                     Autor dibujante_c = null;
                 
-                    for(int j = 0; j < catalogo.getAutores().getSize(); ++j){
-                    String t_autor_c = catalogo.getAutores().get(j).getNombre();
+                    for(int j = 0; j < this.getAutores().getSize(); ++j){
+                    String t_autor_c = this.getAutores().get(j).getNombre();
                     if(t_autor_c.equalsIgnoreCase(s_escritor_c)){
                         s_escritor_c = null;
                         
-                        escritor_c = catalogo.getAutores().get(j);
+                        escritor_c = this.getAutores().get(j);
                     }
                     
                     if(t_autor_c.equalsIgnoreCase(s_dibujante_c)){
                         s_dibujante_c = null;
                         
-                        dibujante_c = catalogo.getAutores().get(j);
+                        dibujante_c = this.getAutores().get(j);
                     }
                     
                     if(s_escritor_c == null && s_dibujante_c == null) break;
@@ -256,7 +277,7 @@ public class Catalogo {
                 }
                 array.pushBack(tomo);
             }
-            catalogo.setTomos(array);            
+            this.setTomos(array);            
 
             //Lectura editorial, los tomos ya deben haber sido creados antes de añadirlos a un editorial
             array = new DynamicArray<Editorial>();
@@ -265,7 +286,7 @@ public class Catalogo {
                 String primera_linea = flujo_entrada.nextLine();
                 Scanner temp_scanner = new Scanner(primera_linea);
                 temp_scanner.next();
-                iteraciones = flujo_entrada.nextInt();     
+                iteraciones = temp_scanner.nextInt();     
             } catch (FileNotFoundException ex){System.out.println("Error en la lectura de editoriales");}
             
              for(;iteraciones > 0;--iteraciones){
@@ -284,8 +305,8 @@ public class Catalogo {
                      
                      Tomo tomo = null;
                      
-                     for(int j = 0; j < catalogo.getTomos().getSize(); ++j){
-                         Tomo temp = catalogo.getTomos().get(j);
+                     for(int j = 0; j < this.getTomos().getSize(); ++j){
+                         Tomo temp = this.getTomos().get(j);
                          if(temp.getNombre().equalsIgnoreCase(nombre_t) && temp.getAgno_publicacion() == agno_publicacion_t){
                              tomo = temp;
                              break;
@@ -299,9 +320,56 @@ public class Catalogo {
                  }
                  
              }
-             catalogo.setEditoriales(array);
-            //Lectura lenguaje
+             this.setEditoriales(array);
+             
+            //Lectura lenguaje, crear tomos antes de añadirlos a Lenguaje
+            array = new DynamicArray<Lenguaje>();
+            try {
+                flujo_entrada = new Scanner(new File("lenguaje.txt"));
+                String primera_linea = flujo_entrada.nextLine();
+                Scanner temp_scanner = new Scanner(primera_linea);
+                temp_scanner.next();
+                iteraciones = temp_scanner.nextInt();     
+            } catch (FileNotFoundException ex){System.out.println("Error en la lectura de lenguajes");}
             
+             for(;iteraciones > 0;--iteraciones){
+                 String nombre = flujo_entrada.next();
+                 
+                 DynamicArray<Tomo> tomos = new DynamicArray<Tomo>();
+                 
+                 Lenguaje lenguaje = new Lenguaje(nombre,tomos); ///LENGUAJE
+                 
+                 int n_tomos = flujo_entrada.nextInt();
+                 
+                 for(int i = 0; i < n_tomos; ++i){
+                     String nombre_t = flujo_entrada.next();
+                     
+                     int agno_publicacion_t = flujo_entrada.nextInt();
+                     
+                     Tomo tomo = null;
+                     
+                     for(int j = 0; j < this.getTomos().getSize(); ++j){
+                         Tomo temp = this.getTomos().get(j);
+                         if(temp.getNombre().equalsIgnoreCase(nombre_t) && temp.getAgno_publicacion() == agno_publicacion_t){
+                             tomo = temp;
+                             break;
+                         }
+                     }
+                     
+                    tomos.pushBack(tomo);
+                    tomo.setLenguaje(lenguaje);
+                    Comic comic = tomo.getCabeza();
+                    for(int k = 0; k < tomo.getTamano(); ++k){
+                        comic.setLenguaje(lenguaje);
+                        comic = comic.getSecuela();
+                    }
+                    array.pushBack(lenguaje);
+                    lenguaje.setTomos(tomos);
+                 }
+                 
+             }
+             this.setLenguajes(lenguajes);
+             System.out.println("Lectura completada");
         }       
         protected Autor buscarAutor(String nombre, int edad)
         {

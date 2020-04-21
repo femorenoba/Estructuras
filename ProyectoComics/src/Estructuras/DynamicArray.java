@@ -43,8 +43,8 @@ public class DynamicArray<T>{
     {
         boolean existe = false;
         
-        for(Object item: array){
-            if(((T)item).equals(value)){
+        for(int i = 0; i < size; ++i){
+            if(((T)array[i]).equals(value)){
                 existe = true;
                 break;
             }

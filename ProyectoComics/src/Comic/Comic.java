@@ -12,7 +12,7 @@ public class Comic {
 	private Comic precuela;
         private Autor escritor; 
         private Autor dibujante;
-	
+	private Lenguaje lenguaje;
 	
 	
 	//Contructor de la clase Comic. 
@@ -32,16 +32,14 @@ public class Comic {
         this.dibujante = dibujante;
     }
              
-    protected String getNombre() {
-        return nombre;
-    }
+        protected String getNombre() {
+            return nombre;
+        }
 
 
 	protected void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
 
 	protected int getAgno_publicacion() {
 		return agno_publicacion;
@@ -63,51 +61,49 @@ public class Comic {
             this.dibujante = dibujante;
         }
 
-        
-
 	protected void setAgno_publicacion(int agno_publicacion) {
 		this.agno_publicacion = agno_publicacion;
 	}
 
-	protected String getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
 
-
-
-	protected void setDescripcion(String descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-	protected Comic getSecuela() {
+	public Comic getSecuela() {
 		return secuela;
 	}
-
-
 
 	protected void setSecuela(Comic secuela) {
 		this.secuela = secuela;
 	}
 
-
-
-	protected Comic getPrecuela() {
+	public Comic getPrecuela() {
 		return precuela;
 	}
-
-
 
 	protected void setPrecuela(Comic precuela) {
 		this.precuela = precuela;
 	}
 
-    @Override
-    public boolean equals(Object obj) {
-        Comic comic = (Comic)obj;
-        return this.agno_publicacion == comic.getAgno_publicacion() &&
-                this.dibujante.equals(comic.getDibujante())         &&
-                this.escritor.equals(comic.getEscritor())           &&
-                this.nombre.equalsIgnoreCase(comic.getNombre());
-    }     
+        public Lenguaje getLenguaje() {
+            return lenguaje;
+        }
+
+        public void setLenguaje(Lenguaje lenguaje) {
+            this.lenguaje = lenguaje;
+        }   
+        
+        @Override
+        public boolean equals(Object obj) {
+            Comic comic = (Comic)obj;
+            return this.agno_publicacion == comic.getAgno_publicacion() &&
+                    this.dibujante.equals(comic.getDibujante())         &&
+                    this.escritor.equals(comic.getEscritor())           &&
+                    this.nombre.equalsIgnoreCase(comic.getNombre());
+        }     
 
 }

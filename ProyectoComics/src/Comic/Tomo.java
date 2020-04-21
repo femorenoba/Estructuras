@@ -17,7 +17,7 @@ public class Tomo {
 	private int tamano;
 	private boolean finalizado;
 	private DynamicArray<Categoria> categorias;
-	private String lenguaje;
+	private Lenguaje lenguaje;
 	private Editorial editorial;
 	
 	
@@ -182,12 +182,12 @@ public class Tomo {
 	}
 
 
-	public String getLenguaje() {
+	public Lenguaje getLenguaje() {
 		return lenguaje;
 	}
 
 
-	public void setLenguaje(String lenguaje) {
+	public void setLenguaje(Lenguaje lenguaje) {
 		this.lenguaje = lenguaje;
 	}
 
@@ -265,6 +265,10 @@ public class Tomo {
 	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
 	}
+
+    public int getTamano() {
+        return tamano;
+    }
 
         
         

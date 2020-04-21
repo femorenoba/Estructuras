@@ -14,6 +14,12 @@ public class Lenguaje {
 		this.tomos = tomos;
 	}
 
+        public Lenguaje(String lenguaje) {
+            this.lenguaje = lenguaje;
+        }
+        
+        
+
 	public String getLenguaje() {
 		return lenguaje;
 	}

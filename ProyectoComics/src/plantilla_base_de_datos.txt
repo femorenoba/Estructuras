@@ -9,12 +9,12 @@ nombre agno_publicacion nombre_escritor nombre_dibujante haFinalizado
 #categorias categorias
 #comics
 Informacion comics(nombre agno_publicacion nombre_escritor nombre_dibujante)
-tieneDescripcion(bool) descripcion, si la hay
 
 Editorial #editoriales
 nombre #tomos 
 nombre_tomo agno_publicacion 
 
-Lenguaje
-lenguaje #tomos tomos... 
+Lenguaje #lenguajes
+lenguaje #tomos 
+nombre_tomo agno_publicacion  
 	
