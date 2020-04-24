@@ -15,9 +15,14 @@ public class Catalogo {
         Catalogo catalogo = new Catalogo();
         catalogo.leerDatos();
         
-        for(int i = 0; i < catalogo.getCategorias().getSize(); ++i) System.out.println(catalogo.getCategorias().get(i).getNombre());
-        for(int i = 0; i < catalogo.getAutores().getSize(); ++i) System.out.println(catalogo.getAutores().get(i).getNombre());
-
+        
+        Tomo tomo = catalogo.getTomos().get(0);
+        Comic comic = tomo.getCabeza();
+        int j =tomo.getTamano();
+            System.out.println(j);
+            
+        System.out.println(tomo.buscar("Watchmen#999999").getSecuela().getNombre());
+        
         }
 
 	private DynamicArray<Editorial> editoriales;

@@ -32,16 +32,16 @@ public class Comic {
         this.dibujante = dibujante;
     }
              
-        protected String getNombre() {
+        public String getNombre() {
             return nombre;
         }
 
 
-	protected void setNombre(String nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	protected int getAgno_publicacion() {
+	public int getAgno_publicacion() {
 		return agno_publicacion;
 	}
 

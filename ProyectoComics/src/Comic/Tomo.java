@@ -141,6 +141,49 @@ public class Tomo {
 	        }
 	        return(this.cola);
 	    }
+            
+            public Comic buscar(String comic){
+                Comic temp = this.cabeza;
+                for(int i = 0; i < this.tamano; ++i){
+                    if(comic.equalsIgnoreCase(temp.getNombre())) return temp;
+                    temp = temp.getSecuela();
+                }
+                return null;
+            }
+            
+            public void borrar(Comic comic) throws Exception{
+                if(this.getTamano() == 0) throw new Exception("Tomo no tiene comics");
+                else{
+                    Comic temp = this.cabeza;
+                    int posicion = -1;
+                    for(int i = 0; i < this.getTamano(); ++i){
+                        if(comic.equals(temp)){
+                            posicion = i;
+                        }
+                    }
+                    if(posicion == -1) throw new Exception("El comic que intenta borrar no pertenece a tomo");
+                    else{
+                        if(this.getTamano() == 1 && posicion == 1){
+                            this.cabeza = null;
+                            this.cola = null;
+                        }
+                        else if(posicion == 1){
+                            this.cabeza = this.getCabeza().getSecuela();
+                            this.cabeza.setPrecuela(null);
+                        }
+                        else if(posicion == this.tamano-1){
+                            this.cola = this.cola.getPrecuela();   
+                            this.cola.setSecuela(null);
+                        }
+                        else{
+                            comic.getPrecuela().setSecuela(comic.getSecuela());
+                            comic.getSecuela().setPrecuela(comic.getPrecuela());
+                        }
+                    }
+                    
+                }
+                
+            }
 
         public Editorial getEditorial() {
         return editorial;
