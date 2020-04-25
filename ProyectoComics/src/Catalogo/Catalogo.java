@@ -21,7 +21,15 @@ public class Catalogo {
         int j =tomo.getTamano();
             System.out.println(j);
             
-        System.out.println(tomo.buscar("Watchmen#999999").getSecuela().getNombre());
+        int[] frequence = new int[2];    
+        for(int i=0;i<tomo.getTamano();i++) {
+        	if(comic.getAgno_publicacion()==1986)
+        		frequence[0]++;
+        	else 
+        		frequence[1]++;
+        }
+        System.out.println(frequence[0]+" de los "+tomo.getTamano()+" comics fueron publicados en 1986, mientras que "+frequence[1]+" en 1987.");
+
         
         }
 
