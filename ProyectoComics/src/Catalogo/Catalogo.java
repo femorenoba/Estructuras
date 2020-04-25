@@ -27,6 +27,7 @@ public class Catalogo {
         		frequence[0]++;
         	else 
         		frequence[1]++;
+		comic = comic.getSecuela();
         }
         System.out.println(frequence[0]+" de los "+tomo.getTamano()+" comics fueron publicados en 1986, mientras que "+frequence[1]+" en 1987.");
 
