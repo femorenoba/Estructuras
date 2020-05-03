@@ -1,6 +1,6 @@
-package Propiedades;
+package my.packages.Propiedades;
 
-import Estructuras.Stack;
+import my.packages.Estructuras.Stack;
 
 public class Usuario {
 	
@@ -8,9 +8,9 @@ public class Usuario {
 	private String nombre;
 	private String password;
 	
-	public Usuario(Stack<String> busquedasRecientes, String nombre, String password) {
+	public Usuario(String nombre, String password) {
 		super();
-		this.busquedasRecientes = busquedasRecientes;
+		this.busquedasRecientes = null;
 		this.nombre = nombre;
 		this.password = password;
 	}

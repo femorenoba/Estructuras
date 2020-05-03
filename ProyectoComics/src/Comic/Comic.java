@@ -1,6 +1,5 @@
-package Comic;
-
-import Propiedades.*;
+package my.packages.Comic;
+import my.packages.Propiedades.*;
 
 public class Comic {
 
@@ -105,5 +104,13 @@ public class Comic {
                     this.escritor.equals(comic.getEscritor())           &&
                     this.nombre.equalsIgnoreCase(comic.getNombre());
         }     
+
+    @Override
+    public String toString() {
+        return this.nombre + " " +  this.getAgno_publicacion()+ " " + this.getEscritor().getNombre() + " " +
+                this.getDibujante().getNombre();
+    }
+        
+        
 
 }

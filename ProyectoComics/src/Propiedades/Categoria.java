@@ -1,4 +1,4 @@
-package Propiedades;
+package my.packages.Propiedades;
 
 public class Categoria {
 	
@@ -24,5 +24,11 @@ public class Categoria {
         public boolean equals(Object categoria){
             return this.nombre.equalsIgnoreCase(((Categoria)categoria).getNombre());
         }
-    
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
+        
+        
 }

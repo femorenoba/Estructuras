@@ -1,9 +1,10 @@
-package Comic;
+package my.packages.Comic;
 
-import Estructuras.DynamicArray;
+
 import java.util.*;
 
-import Propiedades.*; 
+import my.packages.Estructuras.DynamicArray;
+import my.packages.Propiedades.*;
 
 public class Tomo {
 	
@@ -36,9 +37,9 @@ public class Tomo {
             this.cola = null;
 	    }
 
-    public boolean vacio() {
+        public boolean vacio() {
         return(tamano==0);
-    }
+        }
 	    
 	    public int tamano()
 	    {
@@ -64,7 +65,7 @@ public class Tomo {
 	        }
 	        Comic viejaCabeza = this.cabeza;
 	        this.cabeza = cabeza.getSecuela();
-	        if(cabeza!=null) {
+	        if(cabeza!=null && cabeza.getSecuela() != null) {
 	        	this.cabeza.getSecuela().setPrecuela(cabeza);
 	        }
 	        if(cabeza==null){
@@ -111,7 +112,7 @@ public class Tomo {
 	    	comicSiendoAgregado.setPrecuela(comic);
 	        comic.setSecuela(comicSiendoAgregado);
 	        if(comicSiendoAgregado.getPrecuela()!=null){
-	            comicSiendoAgregado.getSecuela().setSecuela(comicSiendoAgregado);
+	            comicSiendoAgregado.getPrecuela().setSecuela(comicSiendoAgregado);
 	        }
 	        if(cola==comic){
 	            this.cola = comicSiendoAgregado;
@@ -238,103 +239,77 @@ public class Tomo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
         
-
 
 	public int getAgno_publicacion() {
 		return agno_publicacion;
 	}
 
-
-
-
 	public void setAgno_publicacion(int agno_publicacion) {
 		this.agno_publicacion = agno_publicacion;
 	}
-
-
-
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 
-
-
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-
-
 
 	public Comic getCabeza() {
 		return cabeza;
 	}
 
-
-
-
 	public void setCabeza(Comic cabeza) {
 		this.cabeza = cabeza;
 	}
-
-
-
 
 	public Comic getCola() {
 		return cola;
 	}
 
-
-
-
 	public void setCola(Comic cola) {
 		this.cola = cola;
 	}
 
-
-
-
 	public boolean isFinalizado() {
 		return finalizado;
 	}
-
-
-
-
+        
 	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
 	}
 
-    public int getTamano() {
-        return tamano;
-    }
-
-        
-        
-        
-    @Override
-    public boolean equals(Object obj) {
-        Tomo tomo = (Tomo)obj;
-        if(tomo.tamano != this.tamano) return false;
-        else{
-            Comic this_comic = this.cabeza;
-            Comic tomo_comic = tomo.cabeza;
-            for(int i = 0; i < tamano; ++i){
-                if(!this_comic.equals(tomo_comic)) return false;
-                this_comic = this_comic.getSecuela();
-                tomo_comic = tomo_comic.getSecuela();
-            }
+        public int getTamano() {
+            return tamano;
         }
-        return  this.escritor.equals(tomo.getEscritor())            &&
-                this.dibujante.equals(tomo.dibujante)               &&
-                this.nombre.equalsIgnoreCase(tomo.getNombre())      &&
-                this.agno_publicacion == tomo.getAgno_publicacion() &&
-                this.categorias.equals(tomo.getCategorias());
+  
+        @Override
+        public boolean equals(Object obj) {
+            Tomo tomo = (Tomo)obj;
+            if(tomo.tamano != this.tamano) return false;
+            else{
+                Comic this_comic = this.cabeza;
+                Comic tomo_comic = tomo.cabeza;
+                for(int i = 0; i < tamano; ++i){
+                    if(!this_comic.equals(tomo_comic)) return false;
+                    this_comic = this_comic.getSecuela();
+                    tomo_comic = tomo_comic.getSecuela();
+                }
+            }
+            return  this.escritor.equals(tomo.getEscritor())            &&
+                    this.dibujante.equals(tomo.dibujante)               &&
+                    this.nombre.equalsIgnoreCase(tomo.getNombre())      &&
+                    this.agno_publicacion == tomo.getAgno_publicacion() &&
+                    this.categorias.equals(tomo.getCategorias());
+        }		
+
+    @Override
+    public String toString() {
+        return this.getNombre() + " " + this.getAgno_publicacion() + " " + this.getEscritor().getNombre() + " " +
+                this.getDibujante().getNombre() + " " +  this.isFinalizado(); 
     }
-	
-	
+        
+        
 }

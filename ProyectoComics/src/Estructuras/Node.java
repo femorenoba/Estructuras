@@ -1,4 +1,4 @@
-package Estructuras;
+package my.packages.Estructuras;
 
 
 class Node <T> {

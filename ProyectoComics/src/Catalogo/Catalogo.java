@@ -1,39 +1,16 @@
-package Catalogo;
+package my.packages.Catalogo;
 
-import Propiedades.*;
-import Comic.*;
-import Estructuras.*;
+import my.packages.Propiedades.*;
+import my.packages.Comic.*;
+import my.packages.Estructuras.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.EmptyStackException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class Catalogo {
-    
-        public static void main(String[] args) {
-        Catalogo catalogo = new Catalogo();
-        catalogo.leerDatos();
-        
-        
-        Tomo tomo = catalogo.getTomos().get(0);
-        Comic comic = tomo.getCabeza();
-        int j =tomo.getTamano();
-            System.out.println(j);
-            
-        int[] frequence = new int[2];    
-        for(int i=0;i<tomo.getTamano();i++) {
-        	if(comic.getAgno_publicacion()==1986)
-        		frequence[0]++;
-        	else 
-        		frequence[1]++;
-		comic = comic.getSecuela();
-        }
-        System.out.println(frequence[0]+" de los "+tomo.getTamano()+" comics fueron publicados en 1986, mientras que "+frequence[1]+" en 1987.");
-
-        
-        }
-
+public class Catalogo { 
+      
 	private DynamicArray<Editorial> editoriales;
 	private DynamicArray<Tomo> tomos;
 	private DynamicArray<Autor> autores;
@@ -41,15 +18,15 @@ public class Catalogo {
 	private DynamicArray<Usuario> usuarios;
         private DynamicArray<Lenguaje> lenguajes;
 
-    public Catalogo(DynamicArray<Editorial> editoriales, DynamicArray<Tomo> tomos, DynamicArray<Autor> autores, DynamicArray<Categoria> categorias, DynamicArray<Usuario> usuarios) {
-        this.editoriales = editoriales;
-        this.tomos = tomos;
-        this.autores = autores;
-        this.categorias = categorias;
-        this.usuarios = usuarios;
-    }
-	
         
+        //Constructores
+        public Catalogo(DynamicArray<Editorial> editoriales, DynamicArray<Tomo> tomos, DynamicArray<Autor> autores, DynamicArray<Categoria> categorias, DynamicArray<Usuario> usuarios) {
+            this.editoriales = editoriales;
+            this.tomos = tomos;
+            this.autores = autores;
+            this.categorias = categorias;
+            this.usuarios = usuarios;
+        }	        
         public Catalogo()
         {
             this(null,null,null,null,null);
@@ -78,63 +55,16 @@ public class Catalogo {
 	public void actualizarComic(Comic comic, int tipoOperacion, String nuevaInformacion){
 		
 	}
-
-        public DynamicArray<Editorial> getEditoriales() {
-            return editoriales;
-        }
-        public void setEditoriales(DynamicArray<Editorial> editoriales) {
-            this.editoriales = editoriales;
-        }
-    
-        public DynamicArray<Tomo> getTomos() {
-            return tomos;
-        }
-        
-        public void setTomos(DynamicArray<Tomo> tomos) {
-            this.tomos = tomos;
-        }
-    
-        public DynamicArray<Autor> getAutores() {
-            return autores;
-        }
-        
-        public void setAutores(DynamicArray<Autor> autores) {
-            this.autores = autores;
-        }
-    
-        public DynamicArray<Categoria> getCategorias() {
-            return categorias;
-        }
-        
-        public void setCategorias(DynamicArray<Categoria> categorias) {
-            this.categorias = categorias;
-        }
-    
-        public DynamicArray<Usuario> getUsuarios() {
-            return usuarios;
-        }
-        
-        public void setUsuarios(DynamicArray<Usuario> usuarios) {
-            this.usuarios = usuarios;
-        }
-
-        public DynamicArray<Lenguaje> getLenguajes() {
-            return lenguajes;
-        }
-
-        public void setLenguajes(DynamicArray<Lenguaje> lenguajes) {
-            this.lenguajes = lenguajes;
-        }
         
         //Persistencia
-        protected void leerDatos()
+        public void leerDatos()
         {
             Scanner flujo_entrada = null;
             int iteraciones = 0;
             DynamicArray array = null;
             //Lectura categoria
             try {
-            flujo_entrada = new Scanner(new File("categoria.txt"));
+            flujo_entrada = new Scanner(new File("../data/categoria.txt"));
             String primera_linea = flujo_entrada.nextLine();
             Scanner temp_scanner = new Scanner(primera_linea);
             temp_scanner.next();
@@ -152,7 +82,7 @@ public class Catalogo {
             
             //Lectura autor
             try {
-            flujo_entrada = new Scanner(new File("autor.txt"));
+            flujo_entrada = new Scanner(new File("../data/autor.txt"));
             String primera_linea = flujo_entrada.nextLine();
             Scanner temp_scanner = new Scanner(primera_linea);
             temp_scanner.next();
@@ -195,7 +125,7 @@ public class Catalogo {
             array = new DynamicArray<Tomo>();            
             
             try {
-            flujo_entrada = new Scanner(new File("tomo.txt"));
+            flujo_entrada = new Scanner(new File("../data/tomo.txt"));
             String primera_linea = flujo_entrada.nextLine();
             Scanner temp_scanner = new Scanner(primera_linea);
             temp_scanner.next();
@@ -296,7 +226,7 @@ public class Catalogo {
             //Lectura editorial, los tomos ya deben haber sido creados antes de añadirlos a un editorial
             array = new DynamicArray<Editorial>();
             try {
-                flujo_entrada = new Scanner(new File("editorial.txt"));
+                flujo_entrada = new Scanner(new File("../data/editorial.txt"));
                 String primera_linea = flujo_entrada.nextLine();
                 Scanner temp_scanner = new Scanner(primera_linea);
                 temp_scanner.next();
@@ -339,7 +269,7 @@ public class Catalogo {
             //Lectura lenguaje, crear tomos antes de añadirlos a Lenguaje
             array = new DynamicArray<Lenguaje>();
             try {
-                flujo_entrada = new Scanner(new File("lenguaje.txt"));
+                flujo_entrada = new Scanner(new File("../data/lenguaje.txt"));
                 String primera_linea = flujo_entrada.nextLine();
                 Scanner temp_scanner = new Scanner(primera_linea);
                 temp_scanner.next();
@@ -397,5 +327,105 @@ public class Catalogo {
                 }
             }
             return null;
+        }
+        //Metodos para modificar Tomos
+        public void tomoAgregarAtras(Comic comic, Tomo tomo){  //Agrega comic al final de tomo.
+            tomo.agregarAtras(comic);
+            this.escribirTomos();
+        }     
+        public void tomoAgregarFrente(Comic comic, Tomo tomo){ //Agrega comic al inicio de tomo.
+            tomo.agregarFrente(comic);
+            this.escribirTomos();
+        }       
+        public Comic tomoQuitarFrente(Tomo tomo){
+            if(tomo.getTamano()==0){
+	            throw new EmptyStackException();
+	        }
+            Comic comic = tomo.quitarFrente();
+            this.escribirTomos();
+            return comic;
+        }             
+        public void tomoAgregarAntes(Comic comic_agregar, Comic comic_antes, Tomo tomo){
+            tomo.agregarAntes(comic_agregar, comic_antes);
+            this.escribirTomos();
+        }      
+        public void tomoAgregarDespues(Comic comicSiendoAgregado, Comic comic, Tomo tomo){
+            tomo.agregarDespues(comicSiendoAgregado, comic);
+            this.escribirTomos();
+        }
+        private void escribirTomos() {
+            File file_actualizada = new File("../data/temp.txt");
+            File file = new File("../data/tomo.txt");
+            DynamicArray <Tomo> tomos = this.getTomos();
+            PrintStream flujo_salida = null;
+            try {
+                flujo_salida = new PrintStream(file_actualizada);
+            } catch (FileNotFoundException ex) {
+                System.out.println("Error en la actualizacion de tomos");
+            }
+            
+            flujo_salida.println("Tomos " + tomos.getSize());
+            
+            for(int i = 0; i < tomos.getSize(); ++i){
+                Tomo tomo = tomos.get(i);
+                flujo_salida.println(tomo);               
+                flujo_salida.print(tomo.getCategorias().getSize() + " ");
+                for(int j = 0; j < tomo.getCategorias().getSize(); ++j){
+                    flujo_salida.print(tomo.getCategorias().get(j) + " ");
+                }
+                flujo_salida.println();
+                flujo_salida.println(tomo.getTamano());
+                Comic comic = tomo.getCabeza();
+                for(int j = 0; j < tomo.getTamano(); ++j){
+                    flujo_salida.println(comic);
+                    comic = comic.getSecuela();
+                }
+            }
+            System.gc();
+            flujo_salida.flush();
+            System.gc();
+            flujo_salida.close();
+            System.gc();
+            System.out.println(file.delete());
+            file_actualizada.renameTo(file);
+        }
+        
+        //Getters y setters
+        
+        public DynamicArray<Editorial> getEditoriales() {
+            return editoriales;
+        }
+        public void setEditoriales(DynamicArray<Editorial> editoriales) {
+            this.editoriales = editoriales;
+        }   
+        public DynamicArray<Tomo> getTomos() {
+            return tomos;
+        }      
+        public void setTomos(DynamicArray<Tomo> tomos) {
+            this.tomos = tomos;
+        }  
+        public DynamicArray<Autor> getAutores() {
+            return autores;
+        }       
+        public void setAutores(DynamicArray<Autor> autores) {
+            this.autores = autores;
+        } 
+        public DynamicArray<Categoria> getCategorias() {
+            return categorias;
+        }      
+        public void setCategorias(DynamicArray<Categoria> categorias) {
+            this.categorias = categorias;
+        }  
+        public DynamicArray<Usuario> getUsuarios() {
+            return usuarios;
+        }    
+        public void setUsuarios(DynamicArray<Usuario> usuarios) {
+            this.usuarios = usuarios;
+        }
+        public DynamicArray<Lenguaje> getLenguajes() {
+            return lenguajes;
+        }
+        public void setLenguajes(DynamicArray<Lenguaje> lenguajes) {
+            this.lenguajes = lenguajes;
         }
 }

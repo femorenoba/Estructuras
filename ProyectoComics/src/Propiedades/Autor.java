@@ -1,6 +1,6 @@
-package Propiedades;
+package my.packages.Propiedades;
 
-import Estructuras.*;
+import my.packages.Estructuras.*;
 
 public class Autor {
 

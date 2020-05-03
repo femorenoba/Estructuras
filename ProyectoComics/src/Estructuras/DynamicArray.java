@@ -1,4 +1,4 @@
-package Estructuras;
+package my.packages.Estructuras;
 
 public class DynamicArray<T>{
 

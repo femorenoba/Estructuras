@@ -1,7 +1,7 @@
-package Propiedades;
+package my.packages.Propiedades;
 
-import Comic.Tomo;
-import Estructuras.DynamicArray;
+import my.packages.Comic.Tomo;
+import my.packages.Estructuras.DynamicArray;
 
 public class Editorial {
 	
